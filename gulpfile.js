@@ -49,12 +49,10 @@ gulp.task('imgmin', function() {
 
 gulp.task('sass', function () {
   return gulp.src(paths.scss + mainFile)
-    .pipe(sourcemaps.init({largeFile: true}))
+    .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
-    .pipe(sourcemaps.write(paths.map , {
-      includeContent: true
-    }))
+    .pipe(sourcemaps.write(paths.map))
     .pipe(gulp.dest(paths.css))
     .pipe(browserSync.stream({match: '**/*.css'}));
 });
